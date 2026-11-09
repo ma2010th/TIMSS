@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مهارات اختبار TIMSS: التدريب الذاتي</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      /* خلفية الصفحة العامة بأسلوب متدرج أنيق ومريح للعين */
+      background: radial-gradient(circle at top right, #eef2ff, #e0e7ff, #cbd5e1);
+    }
+
+    .fraction {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      text-align: center;
+      padding: 0 4px;
+      font-weight: 700;
+    }
+    .numerator {
+      border-bottom: 2px solid currentColor;
+      padding-bottom: 1px;
+      line-height: 1;
+    }
+    .denominator {
+      padding-top: 1px;
+      line-height: 1;
+    }
+
+    /* هيدر تدرجي ملكي جذاب */
+    .custom-gradient {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4338ca 100%);
+    }
+
+    /* إطار للصفحة ذو مظهر فخم ومجسم */
+    .fancy-frame {
+      border: 3px solid #6366f1;
+      box-shadow: 0 20px 40px -15px rgba(49, 46, 129, 0.25), 0 0 0 8px rgba(99, 102, 241, 0.1);
+      position: relative;
+    }
+
+    /* زوايا مزخرفة رقيقة على إطار الصفحة */
+    .corner-decor {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-color: #fbbf24;
+      pointer-events: none;
+      z-index: 30;
+    }
+    .corner-tl { top: 8px; right: 8px; border-top: 3px solid; border-right: 3px solid; border-radius: 0 4px 0 0; }
+    .corner-tr { top: 8px; left: 8px; border-top: 3px solid; border-left: 3px solid; border-radius: 4px 0 0 0; }
+    .corner-bl { bottom: 8px; right: 8px; border-bottom: 3px solid; border-right: 3px solid; border-radius: 0 0 4px 0; }
+    .corner-br { bottom: 8px; left: 8px; border-bottom: 3px solid; border-left: 3px solid; border-radius: 0 0 0 4px; }
+
+    /* خلفية بطاقة السؤال المتميزة */
+    .question-card-bg {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 2px solid #f59e0b;
+      box-shadow: inset 0 2px 4px rgba(245, 158, 11, 0.08);
+    }
+
+    /* خلفية زر الخيار قبل التحديد */
+    .option-btn-bg {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    }
+    .option-btn-bg:hover {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    }
+
+    /* نص التوقيع الذهبي */
+    .golden-signature {
+      color: #d97706;
+      text-shadow: 1px 1px 2px #4a2111;
+      letter-spacing: 0.3px;
+    }
+
+    /* تنسيقات متوافقة مع الطباعة */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .fancy-frame {
+        box-shadow: none !important;
+        border: none !important;
+      }
+      .corner-decor {
+        display: none !important;
+      }
+      .max-w-3xl {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      .print-card {
+        page-break-inside: avoid;
+        border: 1px solid #94a3b8 !important;
+        margin-bottom: 10px !important;
+        padding: 10px !important;
+        border-radius: 8px !important;
+        background-color: #ffffff !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col items-center justify-between p-3 sm:p-5 md:p-8">
+
+  <!-- الإطار الجذاب للصفحة -->
+  <div id="quiz-container-box" class="fancy-frame max-w-3xl w-full bg-white rounded-3xl overflow-hidden my-auto relative z-10">
+    
+    <!-- الزوايا الجمالية المزخرفة -->
+    <div class="corner-decor corner-tl no-print"></div>
+    <div class="corner-decor corner-tr no-print"></div>
+    <div class="corner-decor corner-bl no-print"></div>
+    <div class="corner-decor corner-br no-print"></div>
+
+    <!-- Header -->
+    <div class="custom-gradient p-5 sm:p-7 text-white text-center shadow-md relative z-20">
+      <!-- شارة مهارات اختبار TIMSS -->
+      <div class="inline-block bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-sm sm:text-base md:text-lg font-black px-5 py-1.5 rounded-2xl mb-3 shadow-md border border-amber-200">
+        ✨ مهارات اختبار TIMSS ✨
+      </div>
+      <h1 class="text-xl sm:text-2xl md:text-3xl font-black mb-1.5 tracking-wide text-amber-300">تدريب ذاتي: الأعداد والعمليات</h1>
+    </div>
+
+    <!-- 1. شاشة إدخال اسم الطالب -->
+    <div id="start-screen" class="p-5 sm:p-8 md:p-10 text-center relative z-20">
+      <div class="mb-6">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-black mx-auto mb-3 shadow-inner ring-4 ring-indigo-50">
+          ✍️
+        </div>
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-black text-indigo-950 mb-2">مرحباً بك في التدريب الذاتي</h2>
+        <p class="text-slate-600 text-sm sm:text-base">يرجى كتابة اسمك الثلاثي للبدء وطباعة التقرير عند الانتهاء</p>
+      </div>
+
+      <div class="max-w-md mx-auto mb-6">
+        <label for="student-name-input" class="block text-right text-slate-800 font-bold mb-2 text-sm sm:text-base">اسم الطالب:</label>
+        <input type="text" id="student-name-input" placeholder="أدخل اسمك هنا..." class="w-full text-base sm:text-lg p-3.5 sm:p-4 rounded-xl border-2 border-indigo-200 focus:border-indigo-600 focus:outline-none transition-all font-bold text-slate-800 text-center shadow-sm bg-slate-50/50">
+        <p id="name-error" class="text-rose-600 text-xs sm:text-sm font-bold mt-2 hidden">يرجى إدخال الاسم قبل البدء!</p>
+      </div>
+
+      <button type="button" onclick="startQuiz()" class="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-indigo-800 hover:from-indigo-700 hover:to-indigo-900 text-white text-base sm:text-lg font-black py-3.5 px-10 rounded-xl shadow-lg hover:shadow-indigo-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+        ابدأ التدريب الآن 🚀
+      </button>
+    </div>
+
+    <!-- 2. شاشة الأسئلة -->
+    <div id="quiz-screen" class="hidden p-4 sm:p-7 md:p-8 relative z-20">
+      
+      <!-- Progress & Score -->
+      <div class="flex justify-between items-center mb-5 text-sm sm:text-base font-extrabold text-indigo-950 bg-indigo-50/90 p-3.5 sm:p-4 rounded-2xl border border-indigo-100 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <span id="display-student-name" class="text-indigo-900 font-black"></span>
+          <span id="question-count" class="flex items-center gap-1.5 text-slate-600 text-xs sm:text-sm">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+            السؤال ١ من ٥
+          </span>
+        </div>
+        <span id="score-display" class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white px-3.5 py-1 rounded-xl text-xs sm:text-sm shadow-sm shrink-0">
+          النقاط: ٠
+        </span>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-200 h-2.5 sm:h-3 rounded-full mb-6 overflow-hidden p-0.5 shadow-inner">
+        <div id="progress-bar" class="bg-gradient-to-r from-amber-400 to-indigo-600 h-full rounded-full transition-all duration-500 ease-out w-1/5 shadow-sm"></div>
+      </div>
+
+      <!-- Question Box -->
+      <div id="question-container" class="mb-6">
+        <!-- بطاقة السؤال بلون وتصميم مميز بوضوح تام -->
+        <div class="question-card-bg p-4 sm:p-6 rounded-2xl mb-6 shadow-sm relative overflow-hidden">
+          <div class="text-xs font-black text-amber-800 mb-1.5 uppercase tracking-wider flex items-center gap-1">
+            <span>📌</span> نص السؤال:
+          </div>
+          <h2 id="question-text" class="text-base sm:text-lg md:text-xl font-black text-amber-950 leading-relaxed sm:leading-relaxed"></h2>
+        </div>
+        
+        <!-- حظر البدائل بألوان متناسقة ومميزة -->
+        <div id="options-container" class="grid grid-cols-1 gap-3 sm:gap-3.5">
+          <!-- Options injected by JS -->
+        </div>
+      </div>
+
+      <!-- Feedback Area -->
+      <div id="feedback-box" class="hidden p-4 sm:p-5 rounded-2xl mb-6 text-sm sm:text-base font-bold transition-all shadow-sm leading-relaxed"></div>
+
+      <!-- Action Button -->
+      <div class="flex justify-end items-center mt-5">
+        <button type="button" id="next-btn" onclick="nextQuestion()" class="hidden w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-indigo-800 hover:from-indigo-700 hover:to-indigo-900 text-white text-base sm:text-lg font-black py-3 px-8 rounded-xl shadow-md hover:shadow-indigo-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          السؤال التالي ➔
+        </button>
+      </div>
+    </div>
+
+    <!-- 3. شاشة النتيجة النهائية والتقرير الجاهز للطباعة -->
+    <div id="result-screen" class="hidden p-5 sm:p-8 text-center bg-gradient-to-b from-white to-indigo-50/40 relative z-20">
+      
+      <!-- الهيدر الخاص بالطباعة فقط -->
+      <div class="hidden print-only text-right mb-5 border-b-2 border-slate-800 pb-3">
+        <h1 class="text-xl font-black mb-1">تقرير نتيجة التدريب الذاتي</h1>
+        <p class="text-xs">مهارات اختبار TIMSS - الأعداد والعمليات عليها</p>
+      </div>
+
+      <!-- ملخص النتيجة -->
+      <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-indigo-100 shadow-sm mb-6 print-card">
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl font-black mx-auto mb-3 no-print ring-4 ring-emerald-50">
+          ✓
+        </div>
+        <h2 class="text-lg sm:text-xl md:text-2xl font-black text-slate-900 mb-1.5">اسم الطالب: <span id="final-student-name" class="text-indigo-700"></span></h2>
+        <p id="final-score" class="text-base sm:text-lg text-slate-800 font-bold mb-1.5"></p>
+        <p id="final-percentage" class="text-sm sm:text-base font-bold text-indigo-600 mb-3"></p>
+        <div id="grade-badge" class="inline-block px-5 py-1.5 rounded-full font-black text-sm sm:text-base shadow-sm"></div>
+      </div>
+
+      <!-- تفاصيل الإجابات للطباعة وللمراجعة -->
+      <div class="text-right mb-6">
+        <h3 class="text-base sm:text-lg font-black text-slate-900 mb-3 pb-2 border-b-2 border-indigo-200 flex items-center gap-2">
+          📝 تفاصيل ورقة الإجابة:
+        </h3>
+        <div id="answers-review-container" class="space-y-3">
+          <!-- Inject review cards -->
+        </div>
+      </div>
+
+      <!-- أزرار التحكم (تختفي أثناء الطباعة) -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center no-print pt-4 border-t border-slate-200">
+        <button type="button" onclick="triggerPrint()" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white text-base font-black py-3 px-7 rounded-xl shadow-md hover:shadow-emerald-500/30 transition-all flex items-center justify-center gap-2">
+          🖨️ طباعة ورقة الإجابة
+        </button>
+        <button type="button" onclick="restartQuiz()" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-base font-black py-3 px-7 rounded-xl shadow-md hover:shadow-indigo-500/30 transition-all">
+          إعادة التدريب 🔄
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- التوقيع الفخم في الأسفل -->
+  <footer class="mt-4 mb-2 text-center relative z-20">
+    <div class="inline-flex items-center gap-2 bg-amber-50/90 border border-amber-300/80 px-4 py-1.5 rounded-full shadow-sm">
+      <span class="text-xs">👨‍🏫</span>
+      <p class="golden-signature text-xs sm:text-sm font-bold">
+        إعداد الأستاذ عبدالمحيي السلمي
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const optionLabels = ["أ", "ب", "ج", "د"];
+
+    const rawQuestions = [
+      {
+        question: "أي الخواص الآتية تُعبر عن الجملة الرياضية: ( ٥ + ٧ ) + ٣ = ٥ + ( ٧ + ٣ )؟",
+        options: [
+          { text: "الخاصية التجميعية لعملية الجمع", correct: true },
+          { text: "الخاصية التبديلية لعملية الجمع", correct: false },
+          { text: "خاصية التوزيع", correct: false },
+          { text: "خاصية العنصر المحايد الجمعي", correct: false }
+        ],
+        explanation: "الخاصية التجميعية تُبين أن تغيير تجميع الأعداد في عملية الجمع لا يغير الناتج النهائي."
+      },
+      {
+        question: "ما هو ناتج حساب المقدار التالي: جذر(٦٤) - ( - ٥ + ٩ ) + (٢)³ ؟",
+        options: [
+          { text: "١٢", correct: true },
+          { text: "٨", correct: false },
+          { text: "١٦", correct: false },
+          { text: "٢٠", correct: false }
+        ],
+        explanation: "جذر(٦٤) = ٨، وَ (- ٥ + ٩) = ٤، وَ (٢)³ = ٨. إذن: ٨ - ٤ + ٨ = ١٢."
+      },
+      {
+        question: "أيّ الأعداد التالية يُعدّ عدداً أولياً وفي نفس الوقت عاملاً من عوامل العدد ٣٦؟",
+        options: [
+          { text: "٣", correct: true },
+          { text: "٦", correct: false },
+          { text: "٩", correct: false },
+          { text: "١٢", correct: false }
+        ],
+        explanation: "العدد ٣ هو عدد أولي (يقبل القسمة على نفسه وعلى ١ فقط) وهو يقسم العدد ٣٦ بدون باقٍ (٣٦ ÷ ٣ = ١٢)."
+      },
+      {
+        question: "اشترى أحمد قطعة أرض مساحتها مربع طول ضلعه <span class='fraction'><span class='numerator'>٣</span><span class='denominator'>٥</span></span> كيلو متر. ما هي مساحة قطعة الأرض بالكيلا مترات المربعة؟",
+        options: [
+          { text: "<span class='fraction'><span class='numerator'>٩</span><span class='denominator'>٢٥</span></span>", correct: true },
+          { text: "<span class='fraction'><span class='numerator'>٦</span><span class='denominator'>١٠</span></span>", correct: false },
+          { text: "<span class='fraction'><span class='numerator'>٩</span><span class='denominator'>٥</span></span>", correct: false },
+          { text: "<span class='fraction'><span class='numerator'>٣</span><span class='denominator'>٢٥</span></span>", correct: false }
+        ],
+        explanation: "مساحة المربع = طول الضلع × طول الضلع. إذن: (<span class='fraction'><span class='numerator'>٣</span><span class='denominator'>٥</span></span>) × (<span class='fraction'><span class='numerator'>٣</span><span class='denominator'>٥</span></span>) = <span class='fraction'><span class='numerator'>٩</span><span class='denominator'>٢٥</span></span>."
+      },
+      {
+        question: "ما هو المضاعف المشترك الأصغر (م.م.أ) للعددين ٦ و ٨ ؟",
+        options: [
+          { text: "٢٤", correct: true },
+          { text: "١٢", correct: false },
+          { text: "٤٨", correct: false },
+          { text: "١٦", correct: false }
+        ],
+        explanation: "مضاعفات العدد ٦: ٦، ١٢، ١٨، ٢٤... مضاعفات العدد ٨: ٨، ١٦، ٢٤... أصغر مضاعف مشترك بينهما هو ٢٤."
+      }
+    ];
+
+    let questions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let selectedOption = null;
+    let studentName = "";
+    let userAnswers = [];
+
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function initShuffledQuestions() {
+      questions = rawQuestions.map(q => {
+        return {
+          question: q.question,
+          explanation: q.explanation,
+          options: shuffleArray(q.options)
+        };
+      });
+    }
+
+    function startQuiz() {
+      const input = document.getElementById('student-name-input');
+      const name = input.value.trim();
+      
+      if (!name) {
+        document.getElementById('name-error').classList.remove('hidden');
+        return;
+      }
+
+      studentName = name;
+      document.getElementById('name-error').classList.add('hidden');
+      document.getElementById('start-screen').classList.add('hidden');
+      document.getElementById('quiz-screen').classList.remove('hidden');
+      document.getElementById('display-student-name').innerText = `الطالب: ${studentName}`;
+
+      initShuffledQuestions();
+      currentQuestionIndex = 0;
+      score = 0;
+      userAnswers = [];
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      const q = questions[currentQuestionIndex];
+      document.getElementById('question-count').innerHTML = `
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+        السؤال ${toArabicDigits(currentQuestionIndex + 1)} من ${toArabicDigits(questions.length)}
+      `;
+      document.getElementById('score-display').innerText = `النقاط: ${toArabicDigits(score)}`;
+      document.getElementById('progress-bar').style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
+      document.getElementById('question-text').innerHTML = q.question;
+
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.type = "button";
+        btn.className = "option-btn-bg w-full text-right p-3.5 sm:p-4 md:p-4.5 rounded-2xl border-2 border-indigo-100/90 hover:border-indigo-400 hover:shadow-md transition-all text-sm sm:text-base md:text-lg font-bold flex items-center justify-between shadow-sm cursor-pointer";
+        btn.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-indigo-100 text-indigo-900 border border-indigo-200 flex items-center justify-center text-xs sm:text-sm font-black shrink-0 shadow-sm">${optionLabels[index]}</span>
+            <span class="leading-snug text-indigo-950 font-bold">${opt.text}</span>
+          </div>
+          <span class='w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 border-slate-300 flex items-center justify-center text-xs font-black text-transparent transition-all shrink-0 mr-2'>✓</span>
+        `;
+        btn.onclick = () => checkAnswer(index, btn);
+        optionsContainer.appendChild(btn);
+      });
+
+      document.getElementById('feedback-box').classList.add('hidden');
+      document.getElementById('next-btn').classList.add('hidden');
+      selectedOption = null;
+    }
+
+    function checkAnswer(index, btn) {
+      if (selectedOption !== null) return;
+      selectedOption = index;
+
+      const q = questions[currentQuestionIndex];
+      const isCorrect = q.options[index].correct;
+      const optionsContainer = document.getElementById('options-container');
+      const buttons = optionsContainer.children;
+      const correctIndex = q.options.findIndex(o => o.correct);
+
+      userAnswers.push({
+        question: q.question,
+        selectedLabel: optionLabels[index],
+        selectedText: q.options[index].text,
+        correctLabel: optionLabels[correctIndex],
+        correctText: q.options[correctIndex].text,
+        isCorrect: isCorrect
+      });
+
+      if (isCorrect) {
+        score++;
+        btn.classList.remove('option-btn-bg', 'border-indigo-100/90', 'hover:border-indigo-400');
+        btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-950', 'shadow-md');
+        const icon = btn.querySelector('span:last-child');
+        icon.classList.remove('text-transparent', 'border-slate-300');
+        icon.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+        showFeedback(true, q.explanation);
+      } else {
+        btn.classList.remove('option-btn-bg', 'border-indigo-100/90', 'hover:border-indigo-400');
+        btn.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-950', 'shadow-md');
+        const icon = btn.querySelector('span:last-child');
+        icon.innerText = '✕';
+        icon.classList.remove('text-transparent', 'border-slate-300');
+        icon.classList.add('bg-rose-500', 'text-white', 'border-rose-500');
+        showFeedback(false, q.explanation);
+
+        q.options.forEach((opt, idx) => {
+          if (opt.correct) {
+            buttons[idx].classList.remove('option-btn-bg', 'border-indigo-100/90');
+            buttons[idx].classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-950');
+            const correctIcon = buttons[idx].querySelector('span:last-child');
+            correctIcon.classList.remove('text-transparent', 'border-slate-300');
+            correctIcon.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+          }
+        });
+      }
+
+      document.getElementById('score-display').innerText = `النقاط: ${toArabicDigits(score)}`;
+      document.getElementById('next-btn').classList.remove('hidden');
+    }
+
+    function showFeedback(isCorrect, explanation) {
+      const box = document.getElementById('feedback-box');
+      box.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-400', 'text-emerald-950', 'bg-rose-50', 'border-rose-400', 'text-rose-950');
+      
+      if (isCorrect) {
+        box.classList.add('bg-emerald-50', 'border-2', 'border-emerald-400', 'text-emerald-950');
+        box.innerHTML = `<div class="flex items-start gap-2.5"><span class="text-xl">🎉</span><div><strong class="text-base sm:text-lg block mb-0.5 text-emerald-800">إجابة صحيحة!</strong>${explanation}</div></div>`;
+      } else {
+        box.classList.add('bg-rose-50', 'border-2', 'border-rose-400', 'text-rose-950');
+        box.innerHTML = `<div class="flex items-start gap-2.5"><span class="text-xl">💡</span><div><strong class="text-base sm:text-lg block mb-0.5 text-rose-800">إجابة خاطئة!</strong>${explanation}</div></div>`;
+      }
+    }
+
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      document.getElementById('quiz-screen').classList.add('hidden');
+      
+      const resultScreen = document.getElementById('result-screen');
+      resultScreen.classList.remove('hidden');
+      
+      document.getElementById('final-student-name').innerText = studentName;
+      document.getElementById('final-score').innerText = `النتيجة النهائية: ${toArabicDigits(score)} من أصل ${toArabicDigits(questions.length)}`;
+      
+      const percentage = (score / questions.length) * 100;
+      document.getElementById('final-percentage').innerText = `النسبة المئوية: %${toArabicDigits(Math.round(percentage))}`;
+
+      const badge = document.getElementById('grade-badge');
+      if (percentage >= 90) {
+        badge.className = "inline-block px-5 py-1.5 rounded-full font-black text-sm sm:text-base bg-emerald-100 text-emerald-800 border border-emerald-300";
+        badge.innerText = "التقدير: ممتاز 🌟";
+      } else if (percentage >= 75) {
+        badge.className = "inline-block px-5 py-1.5 rounded-full font-black text-base bg-blue-100 text-blue-800 border border-blue-300";
+        badge.innerText = "التقدير: جيد جداً 👍";
+      } else if (percentage >= 60) {
+        badge.className = "inline-block px-5 py-1.5 rounded-full font-black text-base bg-amber-100 text-amber-800 border border-amber-300";
+        badge.innerText = "التقدير: جيد 👌";
+      } else {
+        badge.className = "inline-block px-5 py-1.5 rounded-full font-black text-base bg-rose-100 text-rose-800 border border-rose-300";
+        badge.innerText = "التقدير: يحتاج إلى مراجعة 📚";
+      }
+
+      const reviewContainer = document.getElementById('answers-review-container');
+      reviewContainer.innerHTML = '';
+
+      userAnswers.forEach((ans, i) => {
+        const item = document.createElement('div');
+        item.className = `p-3.5 rounded-xl border text-right print-card ${ans.isCorrect ? 'bg-emerald-50/60 border-emerald-300' : 'bg-rose-50/60 border-rose-300'}`;
+        item.innerHTML = `
+          <div class="font-bold text-sm sm:text-base mb-1.5 text-slate-900">
+            س${toArabicDigits(i+1)}: ${ans.question}
+          </div>
+          <div class="text-xs sm:text-sm font-bold flex flex-wrap gap-3">
+            <span class="${ans.isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+              إجابة الطالب: ( ${ans.selectedLabel} ) ${ans.selectedText} ${ans.isCorrect ? '✓' : '✕'}
+            </span>
+            ${!ans.isCorrect ? `<span class="text-emerald-800 font-extrabold">الإجابة الصحيحة: ( ${ans.correctLabel} ) ${ans.correctText}</span>` : ''}
+          </div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+    }
+
+    function triggerPrint() {
+      try {
+        window.print();
+      } catch (e) {
+        alert("يرجى استخدام خيار المشاركة ثم اختيار طباعة من متصفحك.");
+      }
+    }
+
+    function restartQuiz() {
+      document.getElementById('result-screen').classList.add('hidden');
+      document.getElementById('start-screen').classList.remove('hidden');
+      document.getElementById('student-name-input').value = '';
+    }
+
+    function toArabicDigits(str) {
+      return String(str).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+    }
+  </script>
+</body>
+</html>
